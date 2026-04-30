@@ -1,5 +1,6 @@
 # Implementation-of-Linear-Regression-Using-Gradient-Descent
-
+# SINDHU PRIYA REDDY
+# 212224040319
 ## AIM:
 To write a program to predict the profit of a city using the linear regression model with gradient descent.
 
@@ -8,22 +9,68 @@ To write a program to predict the profit of a city using the linear regression m
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-1. 
-2. 
-3. 
-4. 
+
+1.Import the required library and read the dataframe.
+2.Write a function compute Cost to generate the cost function.
+3.Perform iterations of gradient steps with learning rate.
+4.Plot the Cost function using Gradient Descent and generate the required graph
+ 
 
 ## Program:
 ```
 /*
 Program to implement the linear regression using gradient descent.
-Developed by: 
-RegisterNumber:  
+Developed by:SINDHU PRIYA REDDY 
+RegisterNumber: 212224040319 
 */
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+data = pd.read_csv("50_Startups.csv")
+
+A = data['R&D Spend'].values
+b = data['Profit'].values
+
+A = (A - A.mean()) / A.std()
+
+c = 0
+d = 0
+
+learning_rate = 0.01
+epochs = 1000
+n = len(A)
+
+for i in range(epochs):
+    b_pred = c * A + d
+    
+    dm = (-2/n) * np.sum(A * (b - b_pred))
+    db = (-2/n) * np.sum(b - b_pred)
+    
+    c = c - learning_rate * dm
+    d = d - learning_rate * db
+
+print("Slope (c):", c)
+print("Intercept (d):", d)
+
+b_pred = c * A + d
+
+plt.scatter(A, b)
+plt.plot(A, b_pred)
+
+plt.xlabel("R&D Spend (Normalized)")
+plt.ylabel("Profit")
+plt.title("Gradient Descent on 50_Startups Dataset")
+
+plt.show()
+
 ```
 
 ## Output:
-![linear regression using gradient descent](sam.png)
+
+<img width="877" height="614" alt="image" src="https://github.com/user-attachments/assets/1ee08fff-bd3b-404a-aea7-1698b17f6483" />
+
 
 
 ## Result:
